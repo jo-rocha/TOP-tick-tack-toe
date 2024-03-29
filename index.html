@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let list = ['rock', 'paper', 'scissors'];
+        let palyer_choice;
+        let computer_choice;
+        let winner;
+
+        function getComputerChoice() {
+            return list[Math.floor(Math.random() * list.length)];
+        }
+
+        function playRound(computer_choice, player_choice) {
+            console.log("hello")
+            switch (computer_choice) {
+                case 'rock':
+                    if (player_choice.localeCompare('rock', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("it's a tie");
+                        return 'tie';
+                    } else if (player_choice.localeCompare('paper', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("you won!");
+                        return 'player'
+                    } else {
+                        console.log("you lost!");
+                        return 'computer';
+                    }
+                break;
+                case 'paper':
+                    if (player_choice.localeCompare('paper', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("it's a tie");
+                        return 'tie';
+                    } else if (player_choice.localeCompare('scissors', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("you won!");
+                        return 'player'
+                    } else {
+                        console.log("you lost!");
+                        return 'computer';
+                    }
+                break;
+                case 'scissors':
+                    if (player_choice.localeCompare('scissors', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("it's a tie");
+                        return 'tie';
+                    } else if (player_choice.localeCompare('rock', 'en', {sensitivity: 'base'}) == 0) {
+                        console.log("you won!");
+                        return 'player'
+                    } else {
+                        console.log("you lost!");
+                        return 'computer';
+                    }
+                break;
+                default: 
+                    console.log('something went wrong!');
+            }
+        }
+        
+        function playGame() {
+            let p_score = 0, c_score = 0;
+            let result;
+            for (let i = 0; i <= 5; i++) {
+                computer_choice = getComputerChoice();
+                player_choice = prompt("What's your choice?");
+                result = playRound(computer_choice, player_choice);
+                result == 'player' 
+                    ? ++p_score
+                    : result == 'computer'
+                        ? ++c_score
+                        : null
+            }
+
+            p_score > c_score 
+                ? console.log(`You won the game with ${p_score} points against ${c_score}`)
+                : p_score < c_score
+                    ? console.log(`You lost the game with ${p_score} point(s) against ${c_score}`)
+                    : console.log(`The game is tied! ${p_score} ${c_score}`);
+        }
+
+        playGame();
+        
+    </script>
+</body>
+</html>
